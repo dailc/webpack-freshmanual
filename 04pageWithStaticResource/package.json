@@ -1,0 +1,30 @@
+{
+  "name": "webpackSimple04",
+  "version": "1.0.0",
+  "description": "页面手动引入css，有一个js入口，会自动扫描所有的页面中link引入的css并合并成一个，主要用来兼容传统的重构模式",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack --watch",
+    "serve": "webpack-dev-server --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dailc",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "babel-preset-es2015": "^6.22.0",
+    "css-loader": "^0.26.2",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "html-webpack-plugin": "^2.28.0",
+    "style-loader": "^0.13.2",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
+  },
+  "dependencies": {
+    "file-loader": "^0.10.1",
+    "html-loader": "^0.4.5",
+    "url-loader": "^0.5.8"
+  }
+}
