@@ -3,7 +3,9 @@ webpack入门系列示例，循序渐进的练习webpack功能时的系列demo�
 
 demo项目结构及其说明:
 
+```
 ├── 01helloWorld	# 入门hellworld，一个html,一个js，一个css，css默认嵌入在js中，html采用`HtmlWebpackPlugin`加载
+├   
 ├   
 ├── 02helloWorld2	# 基于第1个进行拓展，css使用`ExtractTextPlugin`单独打包成一个文件
 ├   
@@ -16,4 +18,4 @@ demo项目结构及其说明:
 ├── 06withHashStaticAndRelease	# 基于第5个进行拓展，增加了`CopyWebpackPlugin`复制静态资源，增加了`chunkhash`,`contenthash`等指纹签名功能，增加了`alias`别名设置，增加了release版本和dev版本的开关
 ├   
 └── 07withLocalServer	# 基于第6个进行拓展，增加了一个`api-server`，来写本地测试接口(已经进行了跨域配置)
-
+```
