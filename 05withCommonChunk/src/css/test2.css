@@ -1,0 +1,11 @@
+
+h1 {
+	color: red;
+}
+
+.imgshow {
+	width: 100px;
+	height: 100px;
+	background-image: url(../img/img_test.jpg);
+}
+

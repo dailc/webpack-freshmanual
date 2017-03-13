@@ -1,5 +1,5 @@
 {
-  "name": "helloworld",
+  "name": "webpackSimple02",
   "version": "1.0.0",
   "description": "hello world示例",
   "main": "index.js",

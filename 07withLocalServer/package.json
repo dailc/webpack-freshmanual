@@ -1,0 +1,35 @@
+{
+  "name": "webpackSimple07",
+  "version": "1.0.0",
+  "description": "webpack 全家桶示例项目，包括模块化打包，热更新，接口请求等",
+  "main": "index.js",
+  "keywords": "javascript, nodejs, webpack",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack --watch",
+    "serve": "webpack-dev-server --watch",
+    "api": "node local.server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dailc",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "babel-preset-es2015": "^6.22.0",
+    "css-loader": "^0.26.2",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "html-webpack-plugin": "^2.28.0",
+    "style-loader": "^0.13.2",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1",
+    "file-loader": "^0.10.1",
+    "html-loader": "^0.4.5",
+    "url-loader": "^0.5.8",
+    "copy-webpack-plugin": "^4.0.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}

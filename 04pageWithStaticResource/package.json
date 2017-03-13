@@ -1,7 +1,7 @@
 {
   "name": "webpackSimple04",
   "version": "1.0.0",
-  "description": "页面手动引入css，有一个js入口，会自动扫描所有的页面中link引入的css并合并成一个，主要用来兼容传统的重构模式",
+  "description": "与前面系列相比,html内部引入了img标签，单独增加了devServer配置",
   "main": "index.js",
   "scripts": {
     "build": "webpack",

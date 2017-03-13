@@ -110,7 +110,7 @@ let CommonTools = __webpack_require__(3);
 console.log("1");
 
 document.getElementById('link').addEventListener('click', function () {
-	window.location.href = 'index2.html';
+	window.location.href = 'pages/index2.html';
 });
 
 /***/ })

@@ -1,5 +1,5 @@
 ## 说明
-这个新手示例中，基于`hello world`进一步拓展。
+这个新手示例中，基于`webpackSimple02`进一步拓展。
 
 * 示例页面变为了两个`index.html`和`index2.html`
 * 抽取了一个`common.config`，用来进行一些配置
