@@ -6,7 +6,6 @@ demo项目结构及其说明:
 ```
 ├── 01helloWorld	# 入门hellworld，一个html,一个js，一个css，css默认嵌入在js中，html采用`HtmlWebpackPlugin`加载
 ├   
-├   
 ├── 02helloWorld2	# 基于第1个进行拓展，css使用`ExtractTextPlugin`单独打包成一个文件
 ├   
 ├── 03pageWithSingleJsAndCss	# 基于第2个进行拓展，示例页面由一个变为多个，并且抽取了通用配置文件`common.config`
