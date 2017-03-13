@@ -16,5 +16,7 @@ demo项目结构及其说明:
 ├
 ├── 06withHashStaticAndRelease	# 基于第5个进行拓展，增加了`CopyWebpackPlugin`复制静态资源，增加了`chunkhash`,`contenthash`等指纹签名功能，增加了`alias`别名设置，增加了release版本和dev版本的开关
 ├   
-└── 07withLocalServer	# 基于第6个进行拓展，增加了一个`api-server`，来写本地测试接口(已经进行了跨域配置)
+├── 07withLocalServer	# 基于第6个进行拓展，增加了一个`api-server`，来写本地测试接口(已经进行了跨域配置)
+├   
+└── 08withFamilyBucket	# 基于第7个进行拓展，webpack全家桶项目，增加了`source-map`，增加了`assets-webpack-plugin`(仅仅生成，但没有使用起来)
 ```

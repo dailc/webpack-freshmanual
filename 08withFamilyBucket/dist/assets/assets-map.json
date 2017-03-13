@@ -1,0 +1,21 @@
+{
+  "js/index": {
+    "js": "http://localhost:8080/dist/js/index-7273fb3daa98a5b5b443.js",
+    "css": "http://localhost:8080/dist/js/index-3a7593e78c6d9d4e0f01e74fb73b1b35.css"
+  },
+  "common/vendor": {
+    "js": "http://localhost:8080/dist/common/vendor-2db8379f8ec8019475ba.js",
+    "css": "http://localhost:8080/dist/common/vendor-18284596cceaec83cebd092bbd7bb534.css"
+  },
+  "js/test/index3": {
+    "js": "http://localhost:8080/dist/js/test/index3-96b221caf879ad429bab.js",
+    "css": "http://localhost:8080/dist/js/test/index3-631ea49ccf763c6cee9ec46af6c5ad89.css"
+  },
+  "js/index2": {
+    "js": "http://localhost:8080/dist/js/index2-5d5d68421e40c6bd16b1.js",
+    "css": "http://localhost:8080/dist/js/index2-4ef8d63354df31daa539eee03851fe01.css"
+  },
+  "common/vendor.bundle": {
+    "js": "http://localhost:8080/dist/common/vendor.bundle-6bf273df79787b118d7b.js"
+  }
+}
