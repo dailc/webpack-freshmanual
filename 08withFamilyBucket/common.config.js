@@ -24,8 +24,14 @@ module.exports = {
 	codeResource: './src',
 	// 定义html页面配置,定义每一个html应该引入的JS文件
 	htmlPages: [{
-		template: 'pages/EnjoyService/NJ_enjoyservice_main.html',
-		chunks: ['js/EnjoyService/NJ_enjoyservice_main'],
+		template: 'pages/index.html',
+		chunks: ['js/index'],
+	}, {
+		template: 'pages/index2.html',
+		chunks: ['js/index2'],
+	}, {
+		template: 'pages/test/index3.html',
+		chunks: ['js/test/index3'],
 	}],
 	
 };

@@ -158,10 +158,7 @@ module.exports = {
 			test: /\.js$/,
 			loader: "babel-loader",
 			exclude: /node_modules/,
-			query: {
-				//必须手动指定，否则可能会出错，比如压缩时会出错
-				presets: ['es2015']
-			}
+			//配置文件改到了 .babelrc中
 		}, {
 			// html-loader,专门替换html里的资源-比如替换图片资源，可以和HtmlWebpackPlugin以前使用的
 			test: /\.html$/,
