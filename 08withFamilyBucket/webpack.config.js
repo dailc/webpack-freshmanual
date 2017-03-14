@@ -109,7 +109,7 @@ module.exports = {
 	// 输出文件 build下的bundle.js
 	output: {
 		// 用来解决css中的路径引用问题
-		publicPath: config.publicPath,
+		publicPath: config.isRelease?config.releasePublicPath:config.devPublicPath,
 		path: path.resolve(__dirname, config.buildPath),
 		// 注意要使用chunkhash
 		filename: config.isRelease ? "[name]-[chunkhash].js" : "[name].js",
@@ -128,11 +128,13 @@ module.exports = {
 		loaders: [{
 			// 分为压缩的和非压缩的，不会重复，否则可能会报错
 			// 包含css 但却不包含.min.css的
+			// 正则表达式元字符需要了解
+			//(?!exp)  匹配后面跟的不是exp的位置
 			test: /^((?!\.min\.css).)*\.css/,
 			loader: ExtractTextPlugin.extract({
 				fallback: "style-loader",
 				// 压缩css
-				use: config.isRelease ? "css-loader?minimize&-autoprefixer" : "css-loader"
+				use: config.isRelease ? "css-loader?minimize&-autoprefixer" : "css-loader",
 			})
 		}, {
 			// 包含css 包含.min.css的
@@ -182,7 +184,7 @@ module.exports = {
 		contentBase: path.resolve(__dirname, config.codeResource),
 		watchContentBase: true,
 		// 默认的服务器访问路径，这里和配置中一致，需要提取成纯粹的host:ip
-		public: /https?:\/\/([^\/]+?)\//.exec(config.publicPath)[1]
+		public: /https?:\/\/([^\/]+?)\//.exec(config.devPublicPath)[1]
 	} : {},
 	//eval-source-map cheap-module-eval-source-map(支持线上环境)
 	//配置sourcemap方便调试
