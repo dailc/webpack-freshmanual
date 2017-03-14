@@ -82,7 +82,7 @@ module.exports = {
 		loaders: [{
 			// 分为压缩的和非压缩的，不会重复，否则可能会报错
 			// 包含css 但却不包含.min.css的
-			test: /[^((?!\.min\.css).)*$]\.css/,
+			test: /^((?!\.min\.css).)*\.css/,
 			loader: ExtractTextPlugin.extract({
 				fallback: "style-loader",
 				// 压缩css
