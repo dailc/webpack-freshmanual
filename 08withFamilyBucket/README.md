@@ -5,7 +5,8 @@ webpack全家桶项目，基于`webpackSimple07`进一步拓展。
 
 * 开启了`source-map`方便进行调试，默认这个配置支持线上模式，会生成一个map文件
 	* uglify压缩时默认会去掉source-map，需要配置`sourceMap:true`
-	* 另外config里的output可以配置`sourceMapFilename:'maps/[name].map'`，将map文件放入maps文件夹中
+	* 另外config里的output可以配置`sourceMapFilename: 'maps/[file].map'`，将map文件放入maps文件夹中
+	* 注意，请使用[file]而不是[name]，否则由于js和css的name相同，会被覆盖
 * 加入`assets-webpack-plugin`插件将文件映射成json(方便其它地方使用)
 	* 默认的json文件是会将output里的entry一一对应下来
 	* 这个的作用主要是用来动态生成html的，本项目中并没有应用(本项目是用的html生成插件，内部自动替换了)

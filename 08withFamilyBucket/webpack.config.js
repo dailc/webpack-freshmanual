@@ -113,7 +113,7 @@ module.exports = {
 		path: path.resolve(__dirname, config.buildPath),
 		// 注意要使用chunkhash
 		filename: config.isRelease ? "[name]-[chunkhash].js" : "[name].js",
-		sourceMapFilename: 'maps/[name].map'
+		sourceMapFilename: 'maps/[file].map'
 	},
 	resolve: {
 		alias: {
