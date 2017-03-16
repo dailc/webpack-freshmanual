@@ -3,6 +3,29 @@ webpack全家桶项目，基于`webpackSimple07`进一步拓展。
 
 这个示例基本囊括webpack所有的功能。
 
+* 增加了`imagemin-webpack-plugin`插件压缩图片
+* 加入`postcss-loader`,`autoprefixer`插件自动补全css(各种前缀,如`-webkit,-ms`)
+	* 另外关于雪碧图(现在已经不推荐使用，建议使用iconfont)
+	* `autoprefixer`用法如下
+
+```
+//plugin中
+new webpack.LoaderOptionsPlugin({
+    options: {
+        postcss: function() {
+            return [autoprefixer];
+        },
+    }
+})
+
+//loaders中
+loader: ExtractTextPlugin.extract({
+    fallback: "style-loader",
+    // 压缩css
+    use: [config.isRelease ? "css-loader?minimize": "css-loader", "postcss-loader"]
+})
+```	
+	
 * 开启了`source-map`方便进行调试，默认这个配置支持线上模式，会生成一个map文件
 	* uglify压缩时默认会去掉source-map，需要配置`sourceMap:true`
 	* 另外config里的output可以配置`sourceMapFilename: 'maps/[file].map'`，将map文件放入maps文件夹中
@@ -11,7 +34,7 @@ webpack全家桶项目，基于`webpackSimple07`进一步拓展。
 	* 默认的json文件是会将output里的entry一一对应下来
 	* 这个的作用主要是用来动态生成html的，本项目中并没有应用(本项目是用的html生成插件，内部自动替换了)
 	* 如果要使用assets的json，一般再配合一个`fs插件`，比如
-	
+
 ```
 var fs =require('fs')
 var path = require('path')

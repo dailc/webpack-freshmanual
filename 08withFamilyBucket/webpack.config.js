@@ -9,6 +9,10 @@ const config = require('./common.config.js');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 //用来将资源生成映射json文件的插件
 const AssetsPlugin = require('assets-webpack-plugin');
+//图片压缩
+const ImageminPlugin = require('imagemin-webpack-plugin').default
+// 样式补全
+const autoprefixer = require('autoprefixer');
 
 // 找需要编译的路径
 let entry = {};
@@ -48,7 +52,15 @@ let plugins = htmlPagePluginConfig.plugin.concat([
 		from: config.codeResource + '/static',
 		//默认已经是 buildPath 输出目录了
 		to: 'static'
-	}])
+	}]),
+	// Make sure that the plugin is after any plugins that add images
+	// 图片压缩要在CopyWebpackPlugin之后
+	new ImageminPlugin({
+		disable: !config.isRelease, // Disable during development
+		pngquant: {
+			quality: '95-100'
+		}
+	})
 ]);
 
 if(config.isAssetsJson) {
@@ -56,7 +68,7 @@ if(config.isAssetsJson) {
 	plugins.push(
 		new AssetsPlugin({
 			filename: 'assets-map.json',
-			path:path.join(__dirname, config.buildPath,'assets'),
+			path: path.join(__dirname, config.buildPath, 'assets'),
 			// update:true代表不会覆盖，而是更新
 			update: true,
 			prettyPrint: true
@@ -109,7 +121,7 @@ module.exports = {
 	// 输出文件 build下的bundle.js
 	output: {
 		// 用来解决css中的路径引用问题
-		publicPath: config.isRelease?config.releasePublicPath:config.devPublicPath,
+		publicPath: config.isRelease ? config.releasePublicPath : config.devPublicPath,
 		path: path.resolve(__dirname, config.buildPath),
 		// 注意要使用chunkhash
 		filename: config.isRelease ? "[name]-[chunkhash].js" : "[name].js",
@@ -134,7 +146,7 @@ module.exports = {
 			loader: ExtractTextPlugin.extract({
 				fallback: "style-loader",
 				// 压缩css
-				use: config.isRelease ? "css-loader?minimize&-autoprefixer" : "css-loader",
+				use: [config.isRelease ? "css-loader?minimize" : "css-loader","postcss-loader"]
 			})
 		}, {
 			// 包含css 包含.min.css的
@@ -147,7 +159,7 @@ module.exports = {
 		}, {
 			test: /\.(png|jpg|gif)$/,
 			//小于1k的会默认用b64实现
-			loader: config.isRelease ? 'url-loader?limit=1024&name=assets/img/[name][hash].[ext]' : "url-loader?limit=1024&name=assets/img/[name].[ext]"
+			loader: config.isRelease ? 'url-loader?limit=2048&name=assets/img/[name][hash].[ext]' : "url-loader?limit=1024&name=assets/img/[name].[ext]"
 		}, {
 			test: /\.woff/,
 			loader: 'file-loader?prefix=font/&limit=10000&mimetype=application/font-woff&name=assets/fonts/[name].[ext]'
@@ -170,7 +182,15 @@ module.exports = {
 			}],
 		}],
 	},
-	plugins: plugins,
+	plugins: plugins.concat([
+		new webpack.LoaderOptionsPlugin({
+			options: {
+				postcss: function() {
+					return [autoprefixer];
+				},
+			}
+		})
+	]),
 	//dev版才有serve
 	devServer: !config.isRelease ? {
 		historyApiFallback: true,

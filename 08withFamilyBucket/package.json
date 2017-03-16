@@ -27,7 +27,10 @@
     "html-loader": "^0.4.5",
     "url-loader": "^0.5.8",
     "copy-webpack-plugin": "^4.0.1",
-    "assets-webpack-plugin": "^3.5.1"
+    "assets-webpack-plugin": "^3.5.1",
+    "imagemin-webpack-plugin": "^1.4.4",
+    "postcss-loader": "^1.3.3",
+    "autoprefixer": "^6.7.7"
   },
   "dependencies": {
     "body-parser": "^1.17.1",

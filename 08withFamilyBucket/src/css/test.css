@@ -1,4 +1,31 @@
-
 h2 {
 	color: blue;
+}
+
+.small {
+	width: 60px;
+	height: 60px;
+	background-image: url(../img/img_small.png);
+	background-repeat: no-repeat;
+}
+
+.sprit1 {
+	width: 24px;
+	height: 24px;
+	background-image: url(../img/sprite/img_icon_sprite_1.png);
+}
+.sprit2 {
+	width: 24px;
+	height: 24px;
+	background-image: url(../img/sprite/img_icon_sprite_2.png);
+}
+.sprit3 {
+	width: 24px;
+	height: 24px;
+	background-image: url(../img/sprite/img_icon_sprite_3.png);
+}
+.sprit4 {
+	width: 24px;
+	height: 24px;
+	background-image: url(../img/sprite/img_icon_sprite_4.png);
 }
