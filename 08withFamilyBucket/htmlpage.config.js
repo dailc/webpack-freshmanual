@@ -1,3 +1,4 @@
+const path = require('path'); // 导入路径包
 // 定义一些html页面以及相应的引用
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = require('./common.config.js');
@@ -15,23 +16,25 @@ function generatePlugins(htmlPages){
 	for(let i = 0, len = htmlPages.length; i < len; i++) {
 		if(config.commonChunkConfig.isCommonChunk) {
 			//如果抽取了chunk,添加到前面
-			htmlPages[i].chunks.unshift(config.commonChunkConfig.chunkName);
-			htmlPages[i].chunks.unshift(config.commonChunkConfig.manifestName);
+			htmlPages[i].chunks.unshift('js/'+config.commonChunkConfig.chunkName);
+			htmlPages[i].chunks.unshift('css/'+config.commonChunkConfig.chunkName);
+			htmlPages[i].chunks.unshift('js/'+config.commonChunkConfig.manifestName);
 		}
 		plugins.push(new HtmlWebpackPlugin({
+			favicon: path.resolve(__dirname, config.favicon||'./favicon.ico'),
 			template: codeResource +'/'+ htmlPages[i].template,
 			filename: htmlPages[i].template,
 			chunks: htmlPages[i].chunks,
-			minify: config.isRelease?{
-				collapseWhitespace: true,
-				collapseBooleanAttributes: true,
-				removeComments: true,
-				removeEmptyAttributes: true,
-				removeScriptTypeAttributes: true,
-				removeStyleLinkTypeAttributes: true,
-				minifyJS: true,
-				minifyCSS: true
-			}:null,
+//			minify: config.isRelease?{
+//				collapseWhitespace: true,
+//				collapseBooleanAttributes: true,
+//				removeComments: true,
+//				removeEmptyAttributes: true,
+//				removeScriptTypeAttributes: true,
+//				removeStyleLinkTypeAttributes: true,
+//				minifyJS: true,
+//				minifyCSS: true
+//			}:null,
 			//hash: true
 		}));
 	}

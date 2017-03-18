@@ -46,7 +46,13 @@ walk('./', codeResource);
 let plugins = htmlPagePluginConfig.plugin.concat([
 	// 这样会定义，所有js文件中通过require引入的css都会被打包一个css
 	// 默认这个css命名为对应文件
-	new ExtractTextPlugin(config.isRelease ? "[name]-[contenthash].css" : "[name].css"),
+	new ExtractTextPlugin({
+		filename: function(getPath) {
+			let fullName = config.isRelease ? "[name]-[contenthash].css" : "[name].css";
+			fullName = 'css/' +fullName;
+			return getPath(fullName).replace('css/js', 'css');
+		}
+	}),
 	// 复制静态资源
 	new CopyWebpackPlugin([{
 		from: config.codeResource + '/static',
@@ -57,9 +63,10 @@ let plugins = htmlPagePluginConfig.plugin.concat([
 	// 图片压缩要在CopyWebpackPlugin之后
 	new ImageminPlugin({
 		disable: !config.isRelease, // Disable during development
-		pngquant: {
-			quality: '95-100'
-		}
+		//
+//		pngquant: {
+//			quality: '95-100'
+//		}
 	})
 ]);
 
@@ -102,14 +109,14 @@ if(config.commonChunkConfig.isCommonChunk) {
 	let chunkPlugins = [
 		// 抽取公用模块
 		new webpack.optimize.CommonsChunkPlugin({
-			name: config.commonChunkConfig.chunkName,
+			name: 'js/'+config.commonChunkConfig.chunkName,
 			// 至少出现三次以上才抽取
 			minChunks: config.commonChunkConfig.minChunks
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			// https://www.zhihu.com/question/31352596/answer/127369675?from=profile_answer_card
-			name: config.commonChunkConfig.manifestName,
-			chunks: [config.commonChunkConfig.chunkName]
+			name: 'js/'+config.commonChunkConfig.manifestName,
+			chunks: ['js/'+config.commonChunkConfig.chunkName]
 		}),
 	];
 
@@ -159,13 +166,13 @@ module.exports = {
 		}, {
 			test: /\.(png|jpg|gif)$/,
 			//小于1k的会默认用b64实现
-			loader: config.isRelease ? 'url-loader?limit=2048&name=assets/img/[name][hash].[ext]' : "url-loader?limit=1024&name=assets/img/[name].[ext]"
+			loader: config.isRelease ? 'url-loader?limit=2048&name=img/[name][hash].[ext]' : "url-loader?limit=1024&name=img/[name].[ext]"
 		}, {
 			test: /\.woff/,
-			loader: 'file-loader?prefix=font/&limit=10000&mimetype=application/font-woff&name=assets/fonts/[name].[ext]'
+			loader: 'file-loader?prefix=font/&limit=10000&mimetype=application/font-woff&name=fonts/[name].[ext]'
 		}, {
 			test: /\.ttf|\.svg|\.eot/,
-			loader: 'file-loader?prefix=font/&name=assets/fonts/[name].[ext]'
+			loader: 'file-loader?prefix=font/&name=fonts/[name].[ext]'
 		}, {
 			test: /\.js$/,
 			loader: "babel-loader",

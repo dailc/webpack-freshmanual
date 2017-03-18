@@ -7,6 +7,8 @@ webpack全家桶项目，基于`webpackSimple07`进一步拓展。
 * 加入`postcss-loader`,`autoprefixer`插件自动补全css(各种前缀,如`-webkit,-ms`)
 	* 另外关于雪碧图(现在已经不推荐使用，建议使用iconfont)
 	* `autoprefixer`用法如下
+* 规范了发布路径，尽量和开发路径结构一致
+* 修复了`release`模式下  `html-webpack-plugin`和`html-loader`重复压缩的问题
 
 ```
 //plugin中
